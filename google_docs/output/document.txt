@@ -1,0 +1,7 @@
+Hello, this is a sample document.
+
+This document contains text and images.
+
+Image: image1.png
+
+Thank you for using our document editor.
