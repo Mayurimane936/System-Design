@@ -124,6 +124,10 @@ class DocumentEditor {
                 doc->addElement(new TabSpaceElement());
             }
 
+            string renderDocument() {
+                return doc->render();
+            }
+            
             void saveDocument() {
                 string renderedData = doc->render();
                 db->save(renderedData);
