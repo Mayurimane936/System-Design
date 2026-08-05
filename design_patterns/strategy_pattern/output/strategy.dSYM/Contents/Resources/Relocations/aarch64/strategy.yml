@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/mayurimane/Desktop/System-Design/design_patterns/strategy_pattern/output/strategy'
+relocations:     []
+...
