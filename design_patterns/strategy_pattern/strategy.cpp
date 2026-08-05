@@ -1,8 +1,6 @@
 #include<stdio.h>
 #include<iostream>
-
 using namespace std;
-
 //---strategy interface for walk ---//
 class WalkRobot {
     public:
@@ -109,9 +107,9 @@ class CompanionRobot : public Robot {
     }
 };
 
-class WarkRobot : public Robot {
+class WarRobot : public Robot {
     public:
-    WarkRobot (WalkRobot *w, TalkRobot *t, FlyRobot *f) : Robot(w,t,f) {}
+    WarRobot (WalkRobot *w, TalkRobot *t, FlyRobot *f) : Robot(w,t,f) {}
 
     void projection() {
         cout << "Projection of war robot" << endl;
@@ -120,7 +118,7 @@ class WarkRobot : public Robot {
 
 int main() {
     Robot *robot1 = new CompanionRobot(new WalkNormally(), new TalkNormally(), new NoFly());
-    Robot *robot2 = new WarkRobot(new NoWalk(), new NoTalk(), new FlyNormally());
+    Robot *robot2 = new WarRobot(new NoWalk(), new NoTalk(), new FlyNormally());
 
     robot1->walk();
     robot1->talk();
