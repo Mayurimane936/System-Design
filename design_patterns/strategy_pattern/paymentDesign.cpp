@@ -1,4 +1,3 @@
-#include<bits/stdc++.h>
 #include<iostream>
 
 using namespace std;
@@ -49,6 +48,7 @@ int main () {
     Payment *payment1 = new Payment(new UpiPayment());
     Payment *payment2 = new Payment(new CardPayment());
     Payment *payment3 = new Payment(new NetBankingPayment());
+
 
     payment1->pay();
     payment2->pay();
