@@ -4,9 +4,9 @@
 using namespace std;
 
 class HotDog {
-    string bun;
-    string sausage;
-    string sauce;
+    bool bun = false;
+    bool sausage = false;
+    bool sauce = false;
     public:
         HotDog* setBun() {
             this->bun = true;
@@ -30,6 +30,6 @@ class HotDog {
 int main (){
     HotDog* hotDog = new HotDog();
     cout<<" hotDog value"<<hotDog<<endl; // address 
-    hotDog->setBun()->setSausage()->setSauce();
+    hotDog->setBun()->setSausage();
     hotDog->show();
 }
