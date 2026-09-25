@@ -1,58 +1,57 @@
+#include<stdio.h>
 #include<iostream>
 
 using namespace std;
 
-class PayNow {
-    public:
-    virtual void pay() = 0;
-    virtual ~PayNow() {};
-};
-
-class UpiPayment : public PayNow {
-    public:
-    void pay() {
-        cout << "Paying using UPI" << endl;
-    }
-};
-
-class CardPayment : public PayNow {
-    public:
-    void pay() {
-        cout << "Paying using card" << endl;
-    }
-};
-
-class NetBankingPayment : public PayNow {
-    public:
-    void pay() {
-        cout << "Paying using net banking" << endl;
-    }
-};
-
-class Payment {
-    private:
-    PayNow *payStrategy;
-
+//abstract class
+class PaymentMethod {
     public: 
-    Payment (PayNow *p) {
-        this->payStrategy = p;
-    }
+    virtual void pay (int amount) = 0;
+    virtual ~PaymentMethod() {};
+};
 
-    void pay() {
-        payStrategy->pay();
+
+class UPIPayment : public PaymentMethod{
+    public: 
+    void pay (int amount) override{
+        cout<<"Paid  ₹" <<amount << " using UPI"<<endl;
+    }
+};
+
+class CardPayment : public PaymentMethod{
+    public: 
+    void pay (int amount) override{
+        cout<<"Paid  ₹" <<amount << " using CardPayment"<<endl;
+    }
+};
+
+class NetBanking : public PaymentMethod{
+    public: 
+    void pay (int amount) override{
+        cout<<"Paid  ₹" <<amount << " using NetBanking"<<endl;
     }
 };
 
 
-int main () {
-    Payment *payment1 = new Payment(new UpiPayment());
-    Payment *payment2 = new Payment(new CardPayment());
-    Payment *payment3 = new Payment(new NetBankingPayment());
+class Strategy {
+    PaymentMethod* method = nullptr;
+    public:
+        void callStrategy (PaymentMethod* paymentType){
+            this->method = paymentType;
+        }
 
+        void executeStrategy(int amount){
+            method->pay(amount);
+        }
+        ~Strategy() {
+            delete method;
+        }
+};
 
-    payment1->pay();
-    payment2->pay();
-    payment3->pay();
-
+int main() {
+    Strategy PaymentStrategy;
+    PaymentStrategy.callStrategy(new CardPayment());
+    PaymentStrategy.executeStrategy(2000);
     return 0;
 }
+
