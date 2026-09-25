@@ -52,6 +52,11 @@ int main() {
     Strategy PaymentStrategy;
     PaymentStrategy.callStrategy(new CardPayment());
     PaymentStrategy.executeStrategy(2000);
+    PaymentStrategy.callStrategy(new UPIPayment());
+    PaymentStrategy.executeStrategy(500);
+    PaymentStrategy.callStrategy(new NetBanking());
+    PaymentStrategy.executeStrategy(3000);
+
     return 0;
 }
 
