@@ -54,6 +54,8 @@ int main(){
     PaymentFactory doPayment;
     Payment *p = doPayment.createPayment(PaymentTypes::NetBanking);
     p->pay();
+    p = doPayment.createPayment(PaymentTypes::Card);
+    p->pay();
     delete p;
     return 0;
 }
