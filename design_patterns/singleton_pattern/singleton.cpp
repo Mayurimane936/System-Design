@@ -19,7 +19,6 @@ private:
 public:
     static Database& getInstance()
     {
-        
         static Database instance;
         return instance;
     }
