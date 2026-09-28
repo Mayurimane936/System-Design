@@ -71,7 +71,6 @@ public:
 };
 
 
-// ---------------- FACTORY ----------------
 
 class UIFactory
 {
@@ -83,7 +82,6 @@ public:
 };
 
 
-// ---------------- WINDOWS FACTORY ----------------
 
 class WindowsFactory : public UIFactory
 {
