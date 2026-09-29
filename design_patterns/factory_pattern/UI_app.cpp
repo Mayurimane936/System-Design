@@ -10,7 +10,6 @@ public:
     virtual ~UI() {}
 };
 
-
 class Button : public UI
 {
 public:
@@ -19,7 +18,6 @@ public:
         cout << "Creating Button" << endl;
     }
 };
-
 
 class WindowsButton : public Button
 {
@@ -30,7 +28,6 @@ public:
     }
 };
 
-
 class MacButton : public Button
 {
 public:
@@ -39,7 +36,6 @@ public:
         cout << "Creating Mac Button" << endl;
     }
 };
-
 
 class CheckBox : public UI
 {
@@ -60,7 +56,6 @@ public:
     }
 };
 
-
 class MacCheckBox : public CheckBox
 {
 public:
@@ -71,76 +66,113 @@ public:
 };
 
 
+class TextBox : public UI
+{
+public:
+    void createElement() override
+    {
+        cout << "Creating TextBox" << endl;
+    }
+};
+
+class WindowsTextBox : public TextBox
+{
+public:
+    void createElement() override
+    {
+        cout << "Creating Windows TextBox" << endl;
+    }
+};
+
+
+class MacTextBox : public TextBox
+{
+public:
+    void createElement() override
+    {
+        cout << "Creating Mac MacTextBox" << endl;
+    }
+};
+
 
 class UIFactory
 {
 public:
-    virtual Button* createButton() = 0;
-    virtual CheckBox* createCheckBox() = 0;
+    virtual Button *createButton() = 0;
+    virtual CheckBox *createCheckBox() = 0;
+    virtual TextBox *createTextBox() = 0;
 
     virtual ~UIFactory() {}
 };
 
-
-
 class WindowsFactory : public UIFactory
 {
 public:
-    Button* createButton() override
+    Button *createButton() override
     {
         return new WindowsButton();
     }
 
-    CheckBox* createCheckBox() override
+    CheckBox *createCheckBox() override
     {
         return new WindowsCheckBox();
     }
+    TextBox *createTextBox() override{
+        return new WindowsTextBox();
+    }
 };
-
 
 // ---------------- MAC FACTORY ----------------
 
 class MacFactory : public UIFactory
 {
 public:
-    Button* createButton() override
+    Button *createButton() override
     {
         return new MacButton();
     }
 
-    CheckBox* createCheckBox() override
+    CheckBox *createCheckBox() override
     {
         return new MacCheckBox();
+    }
+
+    TextBox *createTextBox() override{
+        return new MacTextBox();
     }
 };
 
 int main()
 {
-    UIFactory* uI = new MacFactory();
+    UIFactory *uI = new MacFactory();
 
-    UI* button = uI->createButton();
+    UI *button = uI->createButton();
     button->createElement();
 
-    UI* checkBox = uI->createCheckBox();
+    UI *checkBox = uI->createCheckBox();
     checkBox->createElement();
 
+    UI *textBox = uI->createTextBox();
+    textBox->createElement();
 
     delete button;
     delete checkBox;
     delete uI;
 
-
     uI = new WindowsFactory();
 
-    UI* windowsButton = uI->createButton();
+    UI *windowsButton = uI->createButton();
     windowsButton->createElement();
 
-    UI* windowsCheckBox = uI->createCheckBox();
+    UI *windowsCheckBox = uI->createCheckBox();
     windowsCheckBox->createElement();
 
+    UI *windowsTextBox = uI->createTextBox();
+    windowsTextBox->createElement();
 
     delete windowsButton;
     delete windowsCheckBox;
+    delete textBox;
     delete uI;
 
     return 0;
